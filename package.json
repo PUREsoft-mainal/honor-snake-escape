@@ -1,0 +1,10 @@
+{
+  "name": "honor-snake-escape",
+  "version": "1.0.0",
+  "description": "تحرير الثعابين - HONOR",
+  "dependencies": {
+    "@capacitor/core": "^6.0.0",
+    "@capacitor/cli": "^6.0.0",
+    "@capacitor/android": "^6.0.0"
+  }
+}
