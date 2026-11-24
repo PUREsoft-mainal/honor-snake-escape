@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>تحرير الثعابين - HONOR</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- شاشة البداية -->
+    <div id="menu-screen" class="screen active">
+        <h1>🐍 تحرير الثعابين</h1>
+        <p>حرر الثعابين بذكاء وتجنب احتراقها عند التصادم</p>
+        <div class="stats-badge">المرحلة المفتوحة: <span id="menu-unlocked">1</span> / 100</div>
+        <div class="wallet-pill">🪙 الرصيد: <span id="menu-balance">0.00</span> HONOR</div>
+        <button id="btn-play" class="btn-primary">متابعة اللعب</button>
+        <button id="btn-levels" class="btn-secondary">قائمة المراحل (100)</button>
+        <button id="btn-open-wallet" class="btn-wallet">💼 محفظة HONOR</button>
+    </div>
+
+    <!-- شاشة محفظة HONOR -->
+    <div id="wallet-screen" class="screen">
+        <h2>💼 محفظة HONOR</h2>
+        <div class="wallet-card">
+            <div class="wallet-balance-big"><span id="wallet-balance">0.00</span> <small>HONOR</small></div>
+            <div class="wallet-id-box">
+                <span>عنوان محفظة اللعبة:</span>
+                <strong id="wallet-address">HNR-0000</strong>
+                <button id="btn-copy-addr" class="btn-mini">نسخ</button>
+            </div>
+            <div class="wallet-id-box">
+                <span>معرّف الجهاز (الدخول الدائم):</span>
+                <strong id="device-id-display">---</strong>
+            </div>
+            <div style="display:flex; gap:6px; justify-content:center; margin-bottom:10px;">
+                <button id="btn-save-device" class="btn-mini">💾 حفظ التقدم على الجهاز</button>
+                <button id="btn-restore-device" class="btn-mini" style="background:#ffd166;">♻️ استعادة التقدم</button>
+            </div>
+            <div class="contract-box">
+                <span>العقد الذكي المعتمد:</span>
+                <code id="contract-address"></code>
+            </div>
+            <p class="disclaimer-text">
+                تنويه رسمي: عملة HONOR مخصصة حصرياً للاستخدام والشراء داخل مواقعنا وتطبيقاتنا وألعابنا فقط، وليست للاستثمار أو التداول الخارجي، ونخلي مسؤوليتنا التامة عن أي استخدام خارج هذا النطاق.
+            </p>
+        </div>
+
+
+        <!-- إرسال واستقبال العملات بين الألعاب والمواقع -->
+        <div class="transfer-box">
+            <h3>🔄 إرسال أو استلام بين ألعابك</h3>
+            <input type="text" id="transfer-to" placeholder="معرّف محفظة اللعبة/الموقع المستلم">
+            <input type="number" id="transfer-amount" placeholder="المبلغ (HONOR)" step="0.01" min="0.01">
+            <button id="btn-send-honor" class="btn-primary">إرسال وإنشاء كود تحويل</button>
+            
+            <div class="divider">أو استلام رصيد من لعبة/موقع آخر</div>
+            <input type="text" id="import-code" placeholder="الصق كود التحويل المستلم هنا">
+            <button id="btn-import-honor" class="btn-secondary">استلام الرصيد</button>
+        </div>
+
+        <button id="btn-wallet-back" class="btn-secondary">رجوع للقائمة</button>
+    </div>
+
+    <!-- شاشة اختيار المراحل -->
+    <div id="levels-screen" class="screen">
+        <h2>المراحل (1 - 100)</h2>
+        <div class="wallet-pill">🪙 رصيدك: <span id="levels-balance">0.00</span> HONOR</div>
+        <div id="levels-grid" class="levels-grid"></div>
+        <button id="btn-back-menu" class="btn-secondary">رجوع</button>
+    </div>
+
+    <!-- شاشة اللعب -->
+    <div id="game-screen" class="screen">
+        <div class="hud">
+            <button id="btn-home" class="btn-icon">🏠</button>
+            <div class="hud-info">
+                <span id="level-title">المرحلة 1</span>
+                <span id="snakes-counter">المتبقي: 15 | المحترق: 0</span>
+                <span id="post25-counter" class="bonus-counter hidden">🔥 رصيد التحرير الصحيح (بعد 25): 0</span>
+            </div>
+            <button id="btn-restart" class="btn-icon">🔄</button>
+        </div>
+        <canvas id="gameCanvas"></canvas>
+        <div class="zoom-controls">
+            <button id="btn-zoom-out" class="btn-zoom">➖ تصغير</button>
+            <button id="btn-zoom-reset" class="btn-zoom">🎯 100%</button>
+            <button id="btn-zoom-in" class="btn-zoom">➕ تكبير</button>
+        </div>
+    </div>
+
+    <!-- نافذة شراء مرحلة مغلقة -->
+    <div id="buy-modal" class="modal">
+        <div class="modal-content">
+            <h2 id="buy-modal-title">🔒 فتح المرحلة</h2>
+            <p id="buy-modal-desc"></p>
+            <button id="btn-confirm-buy" class="btn-primary">شراء وفتح المرحلة</button>
+            <button id="btn-cancel-buy" class="btn-secondary">إلغاء</button>
+        </div>
+    </div>
+
+    <!-- نافذة نهاية المرحلة -->
+    <div id="win-modal" class="modal">
+        <div class="modal-content">
+            <h2 id="modal-title">🎉 اكتملت المرحلة!</h2>
+            <p id="modal-stats"></p>
+            <button id="btn-next-level" class="btn-primary">المرحلة التالية</button>
+            <button id="btn-retry-level" class="btn-secondary">إعادة المرحلة</button>
+        </div>
+    </div>
+
+    <!-- استدعاء الملفات بالترتيب المعياري -->
+    <script src="js/device_auth.js"></script>
+    <script src="js/database.js"></script>
+    <script src="js/wallet.js"></script>
+    <script src="js/camera.js"></script>
+    <script src="js/generator.js"></script>
+    <script src="js/effects.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/renderer.js"></script>
+    <script src="js/physics.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
+

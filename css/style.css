@@ -1,0 +1,316 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background-color: #070d1f;
+    color: #ffffff;
+    font-family: system-ui, -apple-system, sans-serif;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+}
+
+.screen {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    overflow-y: auto;
+}
+
+.screen.active {
+    display: flex;
+}
+
+h1 {
+    font-size: 2rem;
+    color: #00f5d4;
+    margin-bottom: 8px;
+}
+
+h2 {
+    color: #00f5d4;
+    margin-bottom: 10px;
+}
+
+p {
+    color: #94a3b8;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.stats-badge, .wallet-pill {
+    background: #111c3d;
+    border: 1px solid #ffd166;
+    color: #ffd166;
+    padding: 7px 18px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    font-weight: bold;
+    font-size: 0.95rem;
+}
+
+button {
+    border: none;
+    border-radius: 12px;
+    padding: 13px 22px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 5px;
+}
+
+button:active {
+    transform: scale(0.96);
+}
+
+.btn-primary {
+    background-color: #00f5d4;
+    color: #070d1f;
+    width: 240px;
+}
+
+.btn-secondary {
+    background-color: #111c3d;
+    color: #ffffff;
+    border: 1px solid #334155;
+    width: 240px;
+}
+
+.btn-wallet {
+    background: linear-gradient(135deg, #ffd166, #f59e0b);
+    color: #070d1f;
+    width: 240px;
+}
+
+.btn-mini {
+    padding: 4px 10px;
+    font-size: 0.8rem;
+    background: #00f5d4;
+    color: #070d1f;
+    border-radius: 8px;
+    margin: 0;
+}
+
+/* تصميم شاشة المحفظة */
+.wallet-card, .transfer-box {
+    background: #111c3d;
+    border: 1px solid #334155;
+    border-radius: 16px;
+    padding: 15px;
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.wallet-balance-big {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ffd166;
+    margin-bottom: 10px;
+}
+
+.wallet-id-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #070d1f;
+    padding: 8px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+
+.contract-box {
+    background: #070d1f;
+    padding: 8px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    font-size: 0.75rem;
+    color: #94a3b8;
+    word-break: break-all;
+}
+
+.contract-box code {
+    display: block;
+    color: #00f5d4;
+    margin-top: 4px;
+    user-select: text;
+}
+
+.disclaimer-text {
+    font-size: 0.75rem;
+    color: #f87171;
+    line-height: 1.4;
+    margin-bottom: 0;
+}
+
+.transfer-box h3 {
+    font-size: 1rem;
+    color: #00f5d4;
+    margin-bottom: 10px;
+}
+
+.transfer-box input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 10px;
+    border: 1px solid #334155;
+    background: #070d1f;
+    color: #ffffff;
+    text-align: center;
+    user-select: text;
+}
+
+.divider {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    margin: 10px 0;
+}
+
+/* HUD واللوحة */
+.hud {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 8px;
+    background: #111c3d;
+    padding: 8px 12px;
+    border-radius: 14px;
+    border: 1px solid #1e293b;
+}
+
+.hud-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+}
+
+#level-title {
+    font-size: 1.05rem;
+    font-weight: bold;
+    color: #00f5d4;
+}
+
+#snakes-counter {
+    font-size: 0.82rem;
+    color: #cbd5e1;
+}
+
+.bonus-counter {
+    font-size: 0.82rem;
+    color: #ffd166;
+    font-weight: bold;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.btn-icon {
+    padding: 10px 14px;
+    background: #1e293b;
+    color: white;
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+canvas {
+    background-color: #0d1630;
+    border-radius: 14px;
+    border: 2px solid #1e293b;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    touch-action: none;
+}
+
+.zoom-controls {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.btn-zoom {
+    background: #111c3d;
+    color: #00f5d4;
+    border: 1px solid #00f5d4;
+    padding: 7px 14px;
+    font-size: 0.85rem;
+    border-radius: 10px;
+    margin: 0;
+}
+
+.levels-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin: 10px 0;
+    width: 100%;
+    max-width: 440px;
+    max-height: 60vh;
+    overflow-y: auto;
+    padding: 5px;
+}
+
+.level-btn {
+    padding: 10px 4px;
+    background: #111c3d;
+    color: #00f5d4;
+    border: 1px solid #00f5d4;
+    width: 100%;
+    margin: 0;
+    font-size: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+}
+
+.level-btn.locked {
+    border-color: #ffd166;
+    color: #ffd166;
+    background: #0b132b;
+}
+
+.level-price {
+    font-size: 0.68rem;
+    color: #cbd5e1;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(7, 13, 31, 0.9);
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: #111c3d;
+    padding: 25px;
+    border-radius: 20px;
+    text-align: center;
+    border: 2px solid #00f5d4;
+    width: 90%;
+    max-width: 360px;
+}
+
