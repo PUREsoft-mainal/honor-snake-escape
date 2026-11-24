@@ -3,7 +3,7 @@
 لعبة ألغاز وذكاء استراتيجية تعتمد على تحرير الثعابين المتشابكة بالترتيب الصحيح قبل نفاد المسارات، مع نظام تدرج تصاعدي يمتد عبر **100 مرحلة**، ومدعومة بنظام **محفظة HONOR الداخلية** للمنظومة الترفيهية.
 
 🌐 **رابط التجربة المباشرة (Web Version):**  
-[https://github.io](https://github.io)
+[https://github.io]([https://github.io](https://puresoft-mainal.github.io/honor-snake-escape/))
 
 ---
 
